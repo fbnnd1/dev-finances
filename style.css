@@ -1,17 +1,37 @@
 /*Global ============================*/
+:root {
+    --dark-blue: #363F5F;
+    --green: #49aa26;
+    --light-green: #33d705;
+    --red: #E92929;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --dark-blue: #363F5F;
+html {
+    font-size: 93.75%; /*15px*/
 }
 
 body {
     background-color: #f0f2f5;
     font-family: 'Poppins', sans-serif;
+}
+
+/*Esconde elementos dos olhos humanos mas não dos leitores de tela*/
+.sr-only { 
+    position: absolute;
+    width: 1px;
+    height:1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -27,9 +47,57 @@ h2 {
     font-weight: normal;
 }
 
+/*Links and buttons ======*/
+a {
+    color: var(--green);
+    text-decoration: none;
+}
 
-/**/
+a:hover {
+    color: var(--light-green);
+}
 
+button {
+    width: 100%;
+    height: 50px;
+
+    border:none;
+    color: white;
+    background: var(--green);
+
+    padding:0;
+
+    border-radius: .25rem;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--light-green);
+}
+
+.button.new {
+    display:inline-block;
+    margin-bottom: .8rem;
+}
+
+.button.cancel {
+    color: var(--red);
+    border: 2px solid var(--red);
+
+    border-radius: 0.25rem;
+    height: 50px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
 
 /* Header ======================= */
 header {
@@ -54,9 +122,7 @@ header {
     
 }
 
-/*
-cards ====================
-*/
+/* cards ====================*/
 .card {
     background-color: white;
     padding: 1.5rem 2rem;
@@ -69,6 +135,10 @@ cards ====================
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .card p {
@@ -79,19 +149,29 @@ cards ====================
 }
 
 .card.total {
-    background-color: #49AA26;
+    background-color: var(--green);
     color: white;
 }
-/*
-table ==================
-*/
+
+/* table ================== */
 table thead tr th:first-child,
 table tbody tr td:first-child  {
     border-radius: 0.25rem 0 0 0.25rem;
 }
 
-#data-table {
+table thead tr th:last-child,
+table tbody tr td:last-child  {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+#transaction {
+    display: block;
     width:100%;
+
+    overflow-x: auto;
+}
+
+#data-table {
     border-spacing: 0 0.5rem; /*VxH*/
     color: #969cb3;
 }
@@ -105,7 +185,7 @@ table th {
     text-align:left;
 }
 
-table  tbody tr {
+table tbody tr {
     opacity: 0.7;
 }
 
@@ -123,11 +203,83 @@ td.description {
 }
 
 td.income {
-    color: #12A454
+    color: #12A454;
 }
 
 td.expensive {
-    color: #E92929;
+    color: var(--red);
+}
+
+/*Modal ===================*/
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0, .7);
+
+    position: fixed;
+    top:0;
+    z-index: 1;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #f0f2f5;
+    padding: 2.4rem;
+
+    max-width: 500px;
+    width: 90%;
+
+    position:relative;
+    z-index: 1;
+}
+
+/*Form ===================*/
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+
+    width:100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
 }
 
 /*Footer ===================*/
@@ -136,4 +288,17 @@ footer {
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
     opacity: 0.6;
+}
+
+/*Responsive ===================*/
+@media (min-width: 800px) {
+    html {
+        font-size: 87.5%;
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
 }
