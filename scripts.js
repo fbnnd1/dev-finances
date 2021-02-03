@@ -39,7 +39,7 @@ const Transaction = {
     incomes() { //Somar as entradas
     
         let income = 0;
-
+        /*
         Transaction.all.forEach((transaction) => {
             if (transaction > 0 ) {
                 income = income + transaction.amount;
@@ -47,18 +47,34 @@ const Transaction = {
 
             }
         });
+        */
+       //Somando com reduce()
+        income = Transaction.all.reduce((sumValues, transaction) => {
+            if (transaction.amount > 0) {
+                return sumValues + transaction.amount;
+            }
+            return sumValues;
+        }, 0);
 
         return income;
     },
     expenses() { //Somar as saídas
         let expense = 0;
-
+        /*
         Transaction.all.forEach((transaction) => {
             if (transaction < 0 ) {
                 expense = expense + transaction;
                 //expense += transaction;
             }
         });
+        */
+       //Somando com reduce()
+       expense = Transaction.all.reduce((sumValues, transaction) => {
+        if (transaction.amount < 0) {
+            return sumValues + transaction.amount;
+        }
+        return sumValues;
+        }, 0);
 
         return expense;
     },
@@ -72,7 +88,6 @@ const DOM = {
     transactionsContainer: document.querySelector("#data-table tbody"),
 
     addTransaction(transaction, index) {
-    //addTransaction(transaction) {
         const tr = document.createElement('tr');
         tr.innerHTML = DOM.innerHTMLTransaction(transaction, index);
         tr.dataset.index = index;
