@@ -282,6 +282,17 @@ input {
     width: 48%;
 }
 
+/*Opção de ganho ou despesas */
+.input-radio-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+input[type='radio'] {
+    width: 10%;
+}
+
 /*Footer ===================*/
 footer {
     text-align:center;

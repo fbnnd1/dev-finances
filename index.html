@@ -67,8 +67,14 @@
                     </div>
                     <div class="input-group">
                         <label for="amount" class="sr-only">Valor</label>
-                        <input type="number" id="amount" name="amount" placeholder="0,00" step="0.01">
-                        <small class="help">Use o sinal menos - (nagetivo) para despesas e , (vírgula) para casas decimais.</small>
+                        <input type="number" id="amount" name="amount" placeholder="0,00" step="0.01" min="0">
+                        <small class="help">Use a vírgula (,) para casas decimais.</small>
+                        <div class="input-radio-group">
+                            <input type="radio" name="signal" id="positive_signal" value="1" checked="true">
+                            <label for="positive_signal">Ganhos</label>
+                            <input type="radio" name="signal" id="negative_signal" value="-1">
+                            <label for="negative_signal">Despesas</label>
+                        </div>
                     </div>
                     <div class="input-group">
                         <label for="date" class="sr-only">Data</label>

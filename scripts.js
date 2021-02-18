@@ -157,11 +157,13 @@ const Form = {
     description: document.querySelector("input#description"),
     amount: document.querySelector("input#amount"),
     date: document.querySelector("input#date"),
+    positiveSignal: document.querySelector("input#positive_signal"),
+    negativeSignal: document.querySelector("input#negative_signal"),
 
     getValues() {
         return {
             description: Form.description.value,
-            amount: Form.amount.value,
+            amount: Form.negativeSignal.checked ? '-' + Form.amount.value : Form.amount.value,
             date: Form.date.value
         }
     },
@@ -197,13 +199,15 @@ const Form = {
         Form.description.value = "";
         Form.amount.value = "";
         Form.date.value = "";
+        Form.positiveSignal.checked = true;
+        Form.negativeSignal.checked = false;
     },
     submit(event) {
         event.preventDefault();
 
         try {
             Form.validateFields(); //Verificar se todas as informações foram preenchidos
-            const transaction = Form.formatValues(); //formatar os daados para salvar
+            const transaction = Form.formatValues(); //formatar os dados para salvar
             Form.saveTransaction(transaction); //salvar 
             Form.clearFields(); //apagar os dados do formulário
             Modal.close(); //fechar modal
