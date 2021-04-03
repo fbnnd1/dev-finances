@@ -2,6 +2,8 @@
 
 Este repositório contém o projeto desenvolvido na maratona discovery promovida pela RocketSeat em Janeiro e Fevereiro de 2021.
 
+Para acessar o site do projeto, <a href="https://fbnnd1.github.io/maratona-discovery-0121">Clique aqui</a>.
+
 ## Descrição do projeto
 
 Gerenciador de finanças simples direcionados para quaisquer pessoas com acesso à Internet.
