@@ -1,10 +1,10 @@
 const Modal = {
     open() { //Abrir modal
-        document.querySelector('.modal-overlay')
+        document.querySelector('#modalForm.modal-overlay')
             .classList.add('active');
     },
     close() { //Fechar modal
-        document.querySelector('.modal-overlay')
+        document.querySelector('#modalForm.modal-overlay')
             .classList.remove('active');
     }
 };
@@ -121,6 +121,36 @@ const DOM = {
 
     clearTransactions() {
         DOM.transactionsContainer.innerHTML = "";
+    },
+
+    innerHTMLExtractTransaction(transaction, balance) {
+        const CSSclassAmount = transaction.amount >= 0 ? "income" : "expensive";
+        const CSSclassBalance = balance >= 0 ? "positive" : "negative";
+        
+        const amount = Utils.formatCurrent(transaction.amount);
+        const formattedBalance = Utils.formatCurrent(balance);
+
+        const html = `
+            <td>${Utils.formatDate(transaction.inFullDate)}</td>
+            <td class="description">${transaction.description}</td>
+            <td class="${CSSclassAmount}">${amount}</td>
+            <td class="${CSSclassBalance}">${formattedBalance}</td>
+        `;
+        return html;
+    },
+
+    innerHTML_ExtractTransactions(extractTransactions) {
+
+        let balance = 0;
+        let htmlTransactions = "";
+
+        for (let extractTransaction of extractTransactions) { //Para cada elemento do array
+            balance = balance + extractTransaction.amount;
+            htmlTransactions += "<tr>" + DOM.innerHTMLExtractTransaction(extractTransaction, balance ) + "</tr>";
+        }
+
+       return htmlTransactions;
+    
     }
 };
 
@@ -148,8 +178,13 @@ const Utils = {
         return value;
     },
     formatDate(value) {
-        const splittedDate = value.split("-");
-        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+
+        if (value.indexOf("-") != -1) {
+            const splittedDate = value.split("-");
+            return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+        }
+
+        return `${value.substring(6,8)}/${value.substring(4,6)}/${value.substring(0,4)}`;
     }
 };
 
@@ -235,7 +270,100 @@ const App = {
     reload() {
         DOM.clearTransactions();
         App.init();
+    },
+
+    openExtract() {
+        if (Transaction.all.length == 0) {
+            return;
+        }
+
+        Extract.init();
+
+        const html = `
+            <!DOCTYPE html>
+            <html lang="pt-br">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap" rel="stylesheet">
+                    <link rel="stylesheet" href="style.css">
+                    <title>Dev.finance$ - Extrato</title>
+                </head>
+                <body>
+                    <main>
+                        <section id="extract">
+                            <h2>Extrato das transações</h2>
+                            <table id="extract-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Transação</th>
+                                        <th>Valor</th>
+                                        <th>Saldo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${DOM.innerHTML_ExtractTransactions( Extract.transactions )}
+                                </tbody>
+                            </table>
+                            
+                        </section>
+                    </main>
+                </<body>
+            </html>
+        `;
+
+        const new_WindowExtract = window.open();
+
+        new_WindowExtract.document.write(html);
     }
+};
+
+const Extract = {
+
+    transactions: [],
+
+    sortTransactions() {
+
+        for (let i = 0; i < this.transactions.length; i++ ) {
+            let earlyTransaction = i;
+
+            for (let j = i + 1; j < this.transactions.length; j++) {
+
+                if (this.transactions[j].inFullDate < this.transactions[earlyTransaction].inFullDate) {
+                    earlyTransaction = j;
+                }
+            }
+
+            if (i != earlyTransaction) {
+                let tempTransaction = this.transactions[i];
+                this.transactions[i] = this.transactions[earlyTransaction];
+                this.transactions[earlyTransaction] = tempTransaction;
+            }
+
+        }
+    },
+
+    getTransactions() {
+        this.transactions = Transaction.all.map((transaction) => {
+
+            const { description, amount, date } = transaction;
+    
+            const [ day, month, year ] = date.split("/");
+    
+            const inFullDate = year + month  + day;
+    
+            return { description, amount, inFullDate  };
+    
+        }, 0);
+    },
+
+    init() {
+        this.getTransactions();
+        this.sortTransactions();
+    }
+
+
 };
 
 App.init();

@@ -4,6 +4,8 @@
     --green: #49aa26;
     --light-green: #33d705;
     --red: #E92929;
+    --blue1 : #1253a4;
+    --light-blue1: #347bd4;
 }
 
 * {
@@ -99,6 +101,14 @@ button:hover {
     opacity: 1;
 }
 
+.button.new.extract {
+    color: var(--blue1);
+}
+
+.button.new.extract:hover {
+    color: var(--light-blue1);
+}
+
 /* Header ======================= */
 header {
     background-color: #2D4A22;
@@ -171,6 +181,11 @@ table tbody tr td:last-child  {
     overflow-x: auto;
 }
 
+.transactions-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
 #data-table {
     border-spacing: 0 0.5rem; /*VxH*/
     color: #969cb3;
@@ -202,11 +217,11 @@ td.description {
     color: var(--dark-blue)
 }
 
-td.income {
+td.income, td.positive {
     color: #12A454;
 }
 
-td.expensive {
+td.expensive, td.negative {
     color: var(--red);
 }
 
@@ -313,3 +328,18 @@ footer {
         gap: 2rem;
     }
 }
+/*Extrato*/
+#extract {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#extract > h2 {
+    text-align: center;
+    color: black;
+    
+    width:100%;
+    margin-bottom: 1rem;
+}
+
