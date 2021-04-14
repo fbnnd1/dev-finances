@@ -328,11 +328,13 @@ footer {
         gap: 2rem;
     }
 }
-/*Extrato*/
+/*Extrato ======================*/
 #extract {
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    min-width: max-content;
 }
 
 #extract > h2 {
