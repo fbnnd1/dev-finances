@@ -1,25 +1,36 @@
-# maratona-discovery-0121
+# Dev.Finance$
 
-Este repositório contém o projeto desenvolvido na maratona discovery promovida pela RocketSeat em Janeiro e Fevereiro de 2021.
+## Sobre
 
-Para acessar o site do projeto, <a href="https://fbnnd1.github.io/maratona-discovery-0121">Clique aqui</a>.
+Este repositório contém o projeto desenvolvido na maratona discovery promovida pela [RocketSeat](https://rocketseat.com.br) em Janeiro e Fevereiro de 2021.
+
+Para acessar o site do projeto, <a href="https://fbnnd1.github.io/maratona-discovery-0121">clique aqui</a>.
 
 ## Descrição do projeto
 
-Gerenciador de finanças simples direcionados para quaisquer pessoas com acesso à Internet.
+Gerenciador de finanças simples direcionado para quaisquer pessoas com acesso à Internet. O sistema funciona através de um site na Internet.
+
+### Observações
+
+Os dados referentes às transações são armazenados no armazenamento local (local storage) do navegador.
 
 ## Funcionalidades
 
 * Cadastrar receitas e despesas;
-* Exibição do saldo.
-
-## Observações
-
-Os dados sobre referentes as transações são armazenados no armazenamento local (local storage) do navegador.
+* Exibição do saldo;
+* Exibição de extrato com as transações.
 
 ## Aprimoramentos
 
-Para facilitar a experiência do usuário no cadastro de receitas e despeesas, ao invés do usuário indicar com sinal negativo (-) no campo valor que determinada transação é uma despesa, ele faz essa indicação por meio de um campo específico do formulário.
+1. Para facilitar a experiência do usuário no cadastro de receitas e despesas, ao invés do usuário indicar com sinal negativo (-) no campo valor que determinada transação é uma despesa, ele faz essa indicação por meio de um campo específico do formulário;
+
+2. Extrato ordenado pela data da transação com variação do saldo.
+
+## Tecnologias utilizadas
+
+* HTML;
+* CSS;
+* Javascript.
 
 ## Telas
 
@@ -27,14 +38,14 @@ Para facilitar a experiência do usuário no cadastro de receitas e despeesas, a
 
 **Desktop**
 
-![Tela Principal](/_docs/Tela1A.png)
+![Tela Principal](/_docs/TelaInicialDesktop.png)
 
 **Mobile**
 
 <table>
 <tr>
-<td><img src="./_docs/Tela1B.png" alt="Tela Principal"></td>
-<td><img src="./_docs/Tela1C.png" alt="Tela Principal"></td>
+<td><img src="./_docs/TelaInicialMobileA.png" alt="Tela Principal"></td>
+<td><img src="./_docs/TelaInicialMobileB.png" alt="Tela Principal"></td>
 </tr>
 </table>
 
@@ -42,8 +53,12 @@ Para facilitar a experiência do usuário no cadastro de receitas e despeesas, a
 
 **Desktop**
 
-![Tela de cadastro de transações](/_docs/TelaForm1B.png)
+![Tela de cadastro de transações](/_docs/TelaFormDesktop.png)
 
 **Mobile**
 
-![Tela de cadastro de transações](/_docs/TelaForm1A.png)
+![Tela de cadastro de transações](/_docs/TelaFormMobile.png)
+
+### **Extrato**
+
+![Tela de extrato](/_docs/TelaExtrato.png)
