@@ -62,3 +62,13 @@ Os dados referentes às transações são armazenados no armazenamento local (lo
 ### **Extrato**
 
 ![Tela de extrato](/_docs/TelaExtrato.png)
+
+## Agradecimentos
+
+Segue o agradecimento a toda a comunidade de devs que participou do evento e membros da Rocketseat, em especial ao professor [Mayk Brito](https://www.youtube.com/user/maykbrito).
+
+## Links Externos
+
+- Twitter do professor Mayk Brito: https://twitter.com/maykbrito  
+- Canal do Youtube do professor Mayk Brito: https://www.youtube.com/user/maykbrito  
+- Instagram do Tiago Luchtenberg, designer responsável pelo layout da aplicação: https://www.instagram.com/tiagoluchtenberg/
